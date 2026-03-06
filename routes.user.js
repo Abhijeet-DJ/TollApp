@@ -58,9 +58,9 @@ route.post("/trn",async (req,res)=>{
         })
         return
     }
-    const recTrn = await Trn.find({ veh_no : v_no }).sort("desc").limit(2)
+    const recTrn = await Trn.find({ veh_no : v_no }).sort({ createdAt : -1 }).limit(2)
 
-    console.log(recTrn);
+    console.log( "Last trn :", recTrn);
 
     const diffInTime = Math.floor(Date.now() / 1000) - Math.floor(recTrn[0]?.createdAt.getTime() / 1000)
     
